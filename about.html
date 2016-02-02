@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <title>WINOK</title>
+  <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/jquery.fancybox.css" />
+  <link rel="stylesheet" href="css/owl.carousel.css" /> 
+  <link rel="stylesheet" href="css/slider.css" /> 
+  <link rel="stylesheet" href="css/flipclock.css" /> 
+  <link rel="stylesheet" href="css/style.css">
+  <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+  <script type="text/javascript" src="js/TweenMax.min.js"></script>
+  <script type="text/javascript" src="js/modernizr.min.js"></script>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+  <noscript><div class="error-js"><strong>Для полной функциональности этого сайта необходимо включить JavaScript.</strong> Вот <a href="http://artjoker.ua/ru/how-to-enable-javascript/" target="_blank">инструкции</a>, как включить JavaScript в вашем браузере.</div></noscript>
+  <!--[if lte IE 8]>
+    <p class="off-js">Ваш браузер устарел, пожалуйста <b>обновите</b> его.</p>
+  <![endif]-->
+  <div id="wrapper">
+    <div class="overlay"></div>
+    <!-- PRELOADER -->
+    <div class="preloader-container">
+      <div class="over-left"></div>
+      <div class="over-right"></div>
+      <div id="preloader" class="preload-gif">
+        <svg width="400" height="200" viewBox="0 0 400 200">
+          <defs>
+            <filter id="goo">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="7" result="blur" />
+              <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 17 -7" result="cm" />
+              <feComposite in="SourceGraphic" in2="cm">
+            </filter>
+            <filter id="f2" x="-200%" y="-40%" width="400%" height="200%">
+              <feOffset in="SourceAlpha" dx="9" dy="3" />
+              <feGaussianBlur result="blurOut" in="offOut" stdDeviation="0.51" />
+              <feComponentTransfer>
+                <feFuncA type="linear" slope="0.05" />
+              </feComponentTransfer>
+              <feMerge>
+                <feMergeNode/>
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+          </defs>
+          <g filter="url(#goo)" style="fill:#f6323e">
+            <ellipse id="drop" cx="125" cy="90" rx="20" ry="20" fill-opacity="1" fill="#f6323e"/>
+            <ellipse id="drop2" cx="125" cy="90" rx="20" ry="20" fill-opacity="1" fill="#f6323e"/>
+          </g>
+        </svg>
+      </div>
+      <script>
+      (function() {
+        var container = document.getElementById('preloader');
+        var drop = document.getElementById('drop');
+        var drop2 = document.getElementById('drop2');
+        var outline = document.getElementById('outline');
+        TweenMax.set(['svg'], {
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          xPercent: -50,
+          yPercent: -50
+        })
+        TweenMax.set([container], {
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          xPercent: -50,
+          yPercent: -50
+        })
+        TweenMax.set(drop, {
+          transformOrigin: '50% 50%'
+        })
+        var tl = new TimelineMax({
+          repeat: -1,
+          paused: false,
+          repeatDelay: 0,
+          immediateRender: false
+        });
+        tl.timeScale(3);
+        tl.to(drop, 4, {
+          attr: {
+            cx: 250,
+            rx: '+=10',
+            ry: '+=10'
+          },
+          ease: Back.easeInOut.config(3)
+        })
+        .to(drop2, 4, {
+          attr: {
+            cx: 250
+          },
+          ease: Power1.easeInOut
+        }, '-=4')
+        .to(drop, 4, {
+          attr: {
+            cx: 125,
+            rx: '-=10',
+            ry: '-=10'
+          },
+          ease: Back.easeInOut.config(3)
+        })
+        .to(drop2, 4, {
+          attr: {
+            cx: 125,
+            rx: '-=10',
+            ry: '-=10'
+          },
+          ease: Power1.easeInOut
+        }, '-=4')
+      })()
+      </script>
+    </div>
+    <!-- PRELOADER -->
+    <!-- search -->
+    <span class="search js_search"></span>
+    <div class="search-box">
+      <form action="#">
+        <span class="close-search js_close"></span>
+        <input type="text">
+        <button type="submit" class="butt butt--grey">Ok</button> 
+      </form>
+    </div>
+    <!-- search -->
+    <!--wrapper start-->
+    <!-- header SECTION-->
+    <header id="header">
+      <div class="top-header clearfix">
+        <div class="center-cont">
+          <div class="top-head-lft">
+            <div class="city">
+              Город: <span class="city-sel js_sel">Киев</span>
+              <ul>
+                <li><a href="#">Харьков</a></li>
+                <li><a href="#">Одесса</a></li>
+                <li><a href="#">Днепропетровск</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="top-head-ctr">Пластиковые окна - продажа и установка</div>
+          <div class="top-head-rth">С 9:00 до 22:00 без выходных</div>
+        </div>
+      </div>
+      <div class="center-header center-cont clearfix">
+        <div class="center-head-l">
+          <div class="phone-box">
+            <ul>
+              <li><a href="tel:+380505878663">+38 (050) 587 86 63</a></li>
+              <li><a href="te:+380505878663">+38 (050) 587 86 63</a></li>
+            </ul>
+            <a href="#" class="link-brd" data-toggle="modal" data-target="call">Заказать обратный звонок</a>
+          </div>
+          <div class="calc-box">
+            <a href="#">Калькулятор стоимости <span>окон</span></a>
+          </div>
+        </div>
+        <div class="logo">
+          <a href="#">
+            <svg xmlns:x="http://ns.adobe.com/Extensibility/1.0/" xmlns:i="http://ns.adobe.com/AdobeIllustrator/10.0/" xmlns:graph="http://ns.adobe.com/Graphs/1.0/" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/" version="1.1" id="Шар_1" x="0px" y="0px" width="264px" height="51px" viewBox="0 0 469.788 92.603" xml:space="preserve">
+                <metadata>
+                  <sfw xmlns="http://ns.adobe.com/SaveForWeb/1.0/">
+                    <slices/>
+                    <sliceSourceBounds height="92.921" width="469.788" bottomLeftOrigin="true" y="-455" x="202.908"/>
+                  </sfw>
+                </metadata>
+                <path class="let-1 an-svg" d="M132.45,0l-28.751,92.603H88.131l-20.233-63.28c-0.554-1.536-1.08-3.405-1.546-5.63  c-0.25,1.07-0.512,2.077-0.762,3.016c-0.265,0.934-0.542,1.813-0.835,2.614l-20.434,63.28H28.695L0,0h14.416  c1.49,0,2.747,0.351,3.756,1.054c0.993,0.7,1.664,1.648,2.017,2.85l15.744,55.4c0.351,1.359,0.669,2.852,0.995,4.447  c0.319,1.602,0.654,3.271,0.992,5.027c0.336-1.784,0.716-3.477,1.127-5.06c0.409-1.58,0.831-3.056,1.313-4.415l18.185-55.4  c0.335-0.979,1.009-1.872,2.019-2.69C61.555,0.409,62.783,0,64.248,0h5.054c1.49,0,2.708,0.365,3.658,1.08  c0.934,0.733,1.634,1.666,2.104,2.823l18.125,55.4c0.892,2.648,1.708,5.704,2.44,9.151c0.542-3.362,1.168-6.417,1.854-9.151  l15.744-55.4c0.262-1.066,0.907-1.987,1.96-2.749C116.241,0.38,117.485,0,118.931,0H132.45z"/>
+                <path class="let-2 an-svg" d="M161.133,92.603h-17.292V0h17.292V92.603z"/>
+                <path class="let-3 an-svg" d="M259.893,0v92.603h-8.843c-1.362,0-2.504-0.218-3.42-0.669c-0.924-0.456-1.801-1.2-2.661-2.281L196.61,27.918  c0.265,2.823,0.397,5.425,0.397,7.823v56.861h-15.19V0h9.036c0.73,0,1.357,0.029,1.887,0.086c0.542,0.071,1.007,0.203,1.414,0.396  c0.397,0.191,0.806,0.466,1.186,0.831c0.379,0.365,0.806,0.835,1.271,1.433l48.545,61.999c-0.115-1.497-0.232-2.97-0.318-4.417  c-0.076-1.448-0.118-2.791-0.118-4.033V0H259.893z"/>
+                <path class="let-4 an-svg" d="M408.438,38.812h4.035c1.622,0,2.965-0.232,4.03-0.674c1.07-0.451,1.987-1.166,2.752-2.148l25.549-32.336  c1.068-1.375,2.195-2.325,3.364-2.848C449.349,0.262,450.829,0,452.625,0h14.853l-31.18,38.488c-1.84,2.352-3.741,4.008-5.701,5.003  c1.404,0.507,2.676,1.225,3.8,2.129c1.142,0.924,2.225,2.134,3.244,3.629l32.147,43.354h-15.171c-2.048,0-3.584-0.289-4.594-0.862  c-0.992-0.583-1.84-1.414-2.528-2.528l-26.182-34.206c-0.815-1.153-1.752-1.96-2.822-2.428c-1.063-0.466-2.6-0.698-4.618-0.698  h-5.435v40.723h-17.233V0h17.233V38.812z"/>
+                <g class="let-o an-svg" id="circ">
+                  <g>
+                    <g>
+                      <g>
+                        <polygon style="fill-rule:evenodd;clip-rule:evenodd;fill:#2C4999;" points="352.035,92.603 351.991,78.133 337.758,92.36     "/>
+                        <polygon style="fill-rule:evenodd;clip-rule:evenodd;fill:#50ABE0;" points="373.007,71.628 372.931,50.128 351.917,50.219 352.035,92.603     "/>
+                        <polygon style="fill-rule:evenodd;clip-rule:evenodd;fill:#2F77BC;" points="337.758,92.36 351.991,78.133 351.976,72.022 330.883,71.932 330.883,92.362     "/>
+                      </g>
+                      <g>
+                        <polygon style="fill-rule:evenodd;clip-rule:evenodd;fill:#E73C2C;" points="301.574,-0.318 301.615,14.151 315.847,-0.083     "/>
+                        <polygon style="fill-rule:evenodd;clip-rule:evenodd;fill:#F7B306;" points="280.601,20.654 280.677,42.155 301.699,42.155 301.574,-0.318     "/>
+                        <polygon style="fill-rule:evenodd;clip-rule:evenodd;fill:#EB6713;" points="315.847,-0.083 301.615,14.151 301.632,20.26 322.722,20.348 322.72,-0.083     "/>
+                      </g>
+                    </g>
+                    <g>
+                      <g>
+                        <polygon style="fill-rule:evenodd;clip-rule:evenodd;fill:#1F6739;" points="280.343,71.37 294.809,71.326 280.583,57.097     "/>
+                        <polygon style="fill-rule:evenodd;clip-rule:evenodd;fill:#95C238;" points="301.314,92.346 322.816,92.267 322.816,71.248 280.343,71.37     "/>
+                        <polygon style="fill-rule:evenodd;clip-rule:evenodd;fill:#30943D;" points="280.583,57.097 294.809,71.326 300.924,71.312 301.01,50.219 280.583,50.222     "/>
+                      </g>
+                      <g>
+                        <polygon style="fill-rule:evenodd;clip-rule:evenodd;fill:#711514;" points="373.265,20.914 358.797,20.953 373.025,35.183     "/>
+                        <polygon style="fill-rule:evenodd;clip-rule:evenodd;fill:#E41B1E;" points="352.292,-0.062 330.795,0.01 330.883,21.036 373.265,20.914     "/>
+                        <polygon style="fill-rule:evenodd;clip-rule:evenodd;fill:#9E191A;" points="373.025,35.183 358.797,20.953 352.682,20.973 352.593,42.063 373.025,42.058     "/>
+                      </g>
+                    </g>
+                  </g>
+                  <rect x="309.923" y="29.352" style="fill-rule:evenodd;clip-rule:evenodd;fill:#EB6713;" width="12.799" height="12.804"/>
+                  <rect x="309.923" y="50.116" style="fill-rule:evenodd;clip-rule:evenodd;fill:#30943D;" width="12.799" height="12.804"/>
+                  <rect x="330.795" y="29.352" style="fill-rule:evenodd;clip-rule:evenodd;fill:#9E191A;" width="12.799" height="12.804"/>
+                  <rect x="330.795" y="50.116" style="fill-rule:evenodd;clip-rule:evenodd;fill:#2F77BC;" width="12.799" height="12.804"/>
+                </g>
+              </svg>
+          </a>
+        </div>
+        <div class="center-head-r">
+          <div class="social-box">
+            <ul>
+              <li><a href="#" target="_blank" class="vk"></a></li>
+              <li><a href="#" target="_blank" class="fb"></a></li>
+              <li><a href="#" target="_blank" class="yt"></a></li>
+            </ul>
+          </div>
+          <div class="center-head-nav">
+            <ul>
+              <li><a href="#">О компании</a></li>
+              <li><a href="#">Акции</a></li>
+              <li><a href="#">Контакты</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="bottom-header">
+        <div class="navigation">
+          <span class="toogle-navigation-butt">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+          <ul class="navigation-menu">
+            <li><a href="#">Пластиковые окна</a></li>
+            <li><a href="#">Балконы под ключ</a></li>
+            <li><a href="#">Алюминиевые окна</a></li>
+            <li><a href="#">Деревянные окна</a></li>
+            <li><a href="#">Двери</a></li>
+            <li><a href="#">Услуги</a></li>
+            <li><a href="#">Цены</a></li>
+          </ul>
+        </div>
+      </div>
+    </header>
+    <!-- header SECTION -->
+    <!-- BREADCRUMBS -->
+    <section class="breadcrumbs">
+      <ul>
+        <li><a href="#">Главная</a></li>
+        <li><span>О Компании</span></li>
+      </ul>
+    </section>
+    <!-- BREADCRUMBS -->
+    <!-- NAVIGATION WINDOW -->
+    <section class="navigation-window">
+      <ul>
+        <li><a href="#">Производство</a></li>
+        <li><a href="#">Партнёрам</a></li>
+        <li><a href="#">Сертификаты</a></li>
+        <li><a href="#">Новости</a></li>
+        <li><a href="#">Отзывы</a></li>
+      </ul>
+    </section>
+    <!-- NAVIGATION WINDOW -->
+    <section class="content-page clearfix">
+      <div class="center-cont">
+        <div class="head-why text-center">
+          Что такое                   
+          <svg xmlns:x="http://ns.adobe.com/Extensibility/1.0/" xmlns:i="http://ns.adobe.com/AdobeIllustrator/10.0/" xmlns:graph="http://ns.adobe.com/Graphs/1.0/" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/" version="1.1" id="Шар_1" x="0px" y="0px" width="144px" height="27px" viewBox="0 0 469.788 92.603" xml:space="preserve">
+                <metadata>
+                  <sfw xmlns="http://ns.adobe.com/SaveForWeb/1.0/">
+                    <slices/>
+                    <sliceSourceBounds height="92.921" width="469.788" bottomLeftOrigin="true" y="-455" x="202.908"/>
+                  </sfw>
+                </metadata>
+                <path d="M132.45,0l-28.751,92.603H88.131l-20.233-63.28c-0.554-1.536-1.08-3.405-1.546-5.63  c-0.25,1.07-0.512,2.077-0.762,3.016c-0.265,0.934-0.542,1.813-0.835,2.614l-20.434,63.28H28.695L0,0h14.416  c1.49,0,2.747,0.351,3.756,1.054c0.993,0.7,1.664,1.648,2.017,2.85l15.744,55.4c0.351,1.359,0.669,2.852,0.995,4.447  c0.319,1.602,0.654,3.271,0.992,5.027c0.336-1.784,0.716-3.477,1.127-5.06c0.409-1.58,0.831-3.056,1.313-4.415l18.185-55.4  c0.335-0.979,1.009-1.872,2.019-2.69C61.555,0.409,62.783,0,64.248,0h5.054c1.49,0,2.708,0.365,3.658,1.08  c0.934,0.733,1.634,1.666,2.104,2.823l18.125,55.4c0.892,2.648,1.708,5.704,2.44,9.151c0.542-3.362,1.168-6.417,1.854-9.151  l15.744-55.4c0.262-1.066,0.907-1.987,1.96-2.749C116.241,0.38,117.485,0,118.931,0H132.45z"/>
+                <path d="M161.133,92.603h-17.292V0h17.292V92.603z"/>
+                <path d="M259.893,0v92.603h-8.843c-1.362,0-2.504-0.218-3.42-0.669c-0.924-0.456-1.801-1.2-2.661-2.281L196.61,27.918  c0.265,2.823,0.397,5.425,0.397,7.823v56.861h-15.19V0h9.036c0.73,0,1.357,0.029,1.887,0.086c0.542,0.071,1.007,0.203,1.414,0.396  c0.397,0.191,0.806,0.466,1.186,0.831c0.379,0.365,0.806,0.835,1.271,1.433l48.545,61.999c-0.115-1.497-0.232-2.97-0.318-4.417  c-0.076-1.448-0.118-2.791-0.118-4.033V0H259.893z"/>
+                <path d="M408.438,38.812h4.035c1.622,0,2.965-0.232,4.03-0.674c1.07-0.451,1.987-1.166,2.752-2.148l25.549-32.336  c1.068-1.375,2.195-2.325,3.364-2.848C449.349,0.262,450.829,0,452.625,0h14.853l-31.18,38.488c-1.84,2.352-3.741,4.008-5.701,5.003  c1.404,0.507,2.676,1.225,3.8,2.129c1.142,0.924,2.225,2.134,3.244,3.629l32.147,43.354h-15.171c-2.048,0-3.584-0.289-4.594-0.862  c-0.992-0.583-1.84-1.414-2.528-2.528l-26.182-34.206c-0.815-1.153-1.752-1.96-2.822-2.428c-1.063-0.466-2.6-0.698-4.618-0.698  h-5.435v40.723h-17.233V0h17.233V38.812z"/>
+                <g class="let-o">
+                  <g>
+                    <g>
+                      <g>
+                        <polygon style="fill-rule:evenodd;clip-rule:evenodd;fill:#2C4999;" points="352.035,92.603 351.991,78.133 337.758,92.36     "/>
+                        <polygon style="fill-rule:evenodd;clip-rule:evenodd;fill:#50ABE0;" points="373.007,71.628 372.931,50.128 351.917,50.219 352.035,92.603     "/>
+                        <polygon style="fill-rule:evenodd;clip-rule:evenodd;fill:#2F77BC;" points="337.758,92.36 351.991,78.133 351.976,72.022 330.883,71.932 330.883,92.362     "/>
+                      </g>
+                      <g>
+                        <polygon style="fill-rule:evenodd;clip-rule:evenodd;fill:#E73C2C;" points="301.574,-0.318 301.615,14.151 315.847,-0.083     "/>
+                        <polygon style="fill-rule:evenodd;clip-rule:evenodd;fill:#F7B306;" points="280.601,20.654 280.677,42.155 301.699,42.155 301.574,-0.318     "/>
+                        <polygon style="fill-rule:evenodd;clip-rule:evenodd;fill:#EB6713;" points="315.847,-0.083 301.615,14.151 301.632,20.26 322.722,20.348 322.72,-0.083     "/>
+                      </g>
+                    </g>
+                    <g>
+                      <g>
+                        <polygon style="fill-rule:evenodd;clip-rule:evenodd;fill:#1F6739;" points="280.343,71.37 294.809,71.326 280.583,57.097     "/>
+                        <polygon style="fill-rule:evenodd;clip-rule:evenodd;fill:#95C238;" points="301.314,92.346 322.816,92.267 322.816,71.248 280.343,71.37     "/>
+                        <polygon style="fill-rule:evenodd;clip-rule:evenodd;fill:#30943D;" points="280.583,57.097 294.809,71.326 300.924,71.312 301.01,50.219 280.583,50.222     "/>
+                      </g>
+                      <g>
+                        <polygon style="fill-rule:evenodd;clip-rule:evenodd;fill:#711514;" points="373.265,20.914 358.797,20.953 373.025,35.183     "/>
+                        <polygon style="fill-rule:evenodd;clip-rule:evenodd;fill:#E41B1E;" points="352.292,-0.062 330.795,0.01 330.883,21.036 373.265,20.914     "/>
+                        <polygon style="fill-rule:evenodd;clip-rule:evenodd;fill:#9E191A;" points="373.025,35.183 358.797,20.953 352.682,20.973 352.593,42.063 373.025,42.058     "/>
+                      </g>
+                    </g>
+                  </g>
+                  <rect x="309.923" y="29.352" style="fill-rule:evenodd;clip-rule:evenodd;fill:#EB6713;" width="12.799" height="12.804"/>
+                  <rect x="309.923" y="50.116" style="fill-rule:evenodd;clip-rule:evenodd;fill:#30943D;" width="12.799" height="12.804"/>
+                  <rect x="330.795" y="29.352" style="fill-rule:evenodd;clip-rule:evenodd;fill:#9E191A;" width="12.799" height="12.804"/>
+                  <rect x="330.795" y="50.116" style="fill-rule:evenodd;clip-rule:evenodd;fill:#2F77BC;" width="12.799" height="12.804"/>
+                </g>
+              </svg>         
+              ? 
+        </div>
+        <div class="red-text text-center">
+          <span class="big">Windows + OK = WinOK</span>
+        </div>
+        <div class="conent-top_t">
+          <p>Компания «WinOK» — украинский производитель пластиковых окон в течение последних 13 лет, безусловный лидер по установке пластиковых окон в Москве и Московской области. Бренд предлагает своим Клиентам пластиковые окна и балконные конструкции, входные и межофисные двери из ПВХ и алюминия, индивидуальное архитектурное проектирование конструкций для остекления фасадов жилых и промышленных зданий, торговых центров, витрин и др. Уникальный ассортимент готовых решений и широкие возможности для создания любого нестандартного индивидуального решения позволяют бренду Московские окна прочно удерживать позиции лидера на рынке. Мы внимательно прислушиваемся к пожеланиям наших Клиентов и внедряем передовые технологии.</p>
+        </div>
+      </div>
+      <!-- SECTION BANER -->
+      <section class="banner-top">
+        <div id="sliderlayer" class="tp-banner rev_slider fullscreenbanner">
+          <ul>
+            <li data-transition="slideleft" data-slotamount="7" data-masterspeed="2000" >
+              <img src="assets/images/ban3.jpg"  alt=""  data-bgfit="cover" data-bgposition="center center" data-bgrepeat="no-repeat">
+            </li>
+            <li data-transition="slideleft" data-slotamount="7" data-masterspeed="2000" >
+              <img src="assets/images/ban1.jpg"  alt=""  data-bgfit="cover" data-bgposition="center center" data-bgrepeat="no-repeat">
+            </li>
+          </ul>
+        </div>
+      </section>
+      <!-- SECTION BANER -->
+      <div class="content container-fluid">
+        <div class="grey-box grey-box--m clearfix">
+          <b>«WinOK» в Киеве и области</b>
+          <p>Собственные розничные точки представлены в Киеве. Каждый новый день заключается более 100 договоров день на остекление, а это значит, каждый день 100 новых семей становятся обладателями окон «WinOK». За 13 год работы более 2,5 млн семей уже смогли опробовать качество продукции Московские окна на собственном опыте.</p>
+          <b>Нам доверяют </b>
+          <p>Многочисленные отзывы и рекомендации наших Клиентов — лучшее признание качества нашей продукции и услуг. Сегодня «WinOK» — это многолетний опыт работы и подтвержденная сертификатами гарантия самого высокого качества оконного профиля, всех оконных конструкций, стеклопакетов собственного производства, а также проектировочных и установочных работ.</p>
+          <b>Высокое качество обслуживания и продукции </b>
+          <p>Производимые брендом «WinOK» стеклопакеты служат 70 лет — это абсолютный российский рекорд, подтвержденный НИИ Строительной физики. Служба поддержки Клиентов работает 7 дней в неделю и всегда готова ответить на любой вопрос по приобретению и обслуживанию изделий, выпускаемых компанией. Мы стремимся оказывать наилучшую клиентскую поддержку в индустрии.</p>
+          <b>Высококвалифицированные кадры</b>
+          <p>Компания «WinOK» является крупнейшим работодателем в строительной индустрии. Подбору персонала уделяется огромное внимание в компании. Только благодаря высококвалифицированному персоналу компания имеет возможность предлагать продукцию и услуги высочайшего качества и не сдавать позиции лидера. За многолетний опыт работы компания была удостоена многочисленных наград и премий</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="abobe-footer"></section>
+  </div>
+  <!--wrapper end-->
+  <!-- FOOTER SECTION -->
+  <footer id="footer">
+    <div class="container-fluid">
+      <div class="foot-cont clearfix">
+        <div class="foot-wr-m clearfix">
+          <form action="#" class="js_validate">
+            <div class="form-gr">
+              <input type="email" placeholder="Для подписки на рассылку введите свой email" data-validate="email" required>
+            </div>
+            <button type="submit" class="butt">подписаться</button>
+          </form>
+        </div>
+        <div class="col-foot col-foot--1">
+          <span class="foot__head">Меню</span>
+          <ul class="foot-nav foot-nav--1">
+            <li class="foot-nav__item"><a href="#" data-hover="Главная">Главная</a></li>
+            <li class="foot-nav__item"><a href="#" data-hover="О Компании">О Компании</a></li>
+            <li class="foot-nav__item"><a href="#" data-hover="Акции">Акции</a></li>
+            <li class="foot-nav__item"><a href="#" data-hover="Контакты">Контакты</a></li>
+            <li class="foot-nav__item"><a href="#" data-hover="Калькулятор стоимости">Калькулятор стоимости</a></li>
+            <li class="foot-nav__item"><a href="#" data-hover="Цены">Цены</a></li>
+            <li class="foot-nav__item"><a href="#" data-hover="Услуги">Услуги</a></li>
+          </ul>
+        </div>
+        <div class="col-foot col-foot--2">
+          <span class="foot__head">Разделы</span>
+          <ul class="foot-nav">
+            <li class="foot-nav__item"><a href="#" data-hover="Пластиковые окна">Пластиковые окна</a></li>
+            <li class="foot-nav__item"><a href="#" data-hover="Балконы под ключ">Балконы под ключ</a></li>
+            <li class="foot-nav__item"><a href="#" data-hover="Алюминиевые окна">Алюминиевые окна</a></li>
+            <li class="foot-nav__item"><a href="#" data-hover="Деревянные окна">Деревянные окна</a></li>
+            <li class="foot-nav__item"><a href="#" data-hover="Двери">Двери</a></li>
+          </ul>
+        </div>
+        <div class="right-foot">
+          <ul>
+            <li class="ft-phone"><a href="tel:+380675736836">+38 (067) 573 68 36</a></li>
+            <li class="ft-mail"><a href="mailto:info@winok.com.ua">info@winok.com.ua</a></li>
+            <li class="write-me"><a href="#">Написать нам</a></li>
+          </ul>
+          <ul class="social">
+            <li><a href="#" class="vk" target="_blank"></a></li>
+            <li><a href="#" class="fb" target="_blank"></a></li>
+            <li><a href="#" class="yt" target="_blank"></a></li>
+          </ul>
+        </div>
+        <div class="footer-holder">
+          <div class="pull-left"><img src="images/logo-foot.png" alt=""> © 2016</div>
+          <div class="pull-right">Разработка и поддержка сайтов - <a href="artjoker.ua" target="_blank">Artjoker</a></div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- FOOTER SECTION -->
+  <!-- MODAL -->
+  <div id="complite" class="modal fade" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content text-center">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+        <div class="modal-body clearfix">
+          <div class="heading text-center">Thank you for your request</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- MODAL -->
+  <script type="text/javascript" src="http://code.jquery.com/jquery-migrate-1.2.0.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="js/owl.carousel.min.js"></script>
+  <script src="http://maps.googleapis.com/maps/api/js?sensor=false" type="text/javascript"></script> 
+  <script type="text/javascript" src="js/jquery.themepunch.min.js"></script>
+  <script type="text/javascript" src="js/jquery.themepunch.plugins.revolution.js"></script>
+  <script type="text/javascript" src="js/bootstrap-select.js"></script>
+  <script type="text/javascript" src="js/flipclock.min.js"></script>
+  <script type="text/javascript" src="js/eskju.jquery.scrollflow.min.js"></script>
+  <script type="text/javascript" src="js/jquery.autocolumnlist.min.js"></script>
+  <script type="text/javascript" src="js/wNumb.js"></script>
+  <script type="text/javascript" src="js/nouislider.min.js"></script>
+  <script type="text/javascript"  src="js/main.js"></script>
+</body>
+</html>
